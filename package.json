@@ -1,40 +1,50 @@
 {
-	"name": "unicorn-fun-cli",
+	"name": "@barelyreaper/add-config",
 	"version": "0.0.0",
-	"description": "My awesome command-line tool",
+	"description": "add-config - create a standardised config storage",
 	"license": "MIT",
-	"repository": "YOUR-GITHUB-USERNAME/unicorn-fun-cli",
+	"repository": "barelyhuman/add-config",
 	"author": {
-		"name": "YOUR NAME",
-		"email": "YOUR EMAIL",
-		"url": "YOUR WEBSITE"
+		"name": "Reaper",
+		"email": "ahoy@barelyhuman.dev",
+		"url": "https://reaper.im"
 	},
 	"type": "module",
 	"bin": {
-		"unicorn-fun": "cli.js"
+		"add-config": "dist/cli.js"
 	},
 	"engines": {
 		"node": ">=12"
 	},
 	"scripts": {
-		"test": "xo && ava"
+		"build": "babel 'source' -d dist",
+		"prepare": "npm run build",
+		"clean": "rimraf config",
+		"pretest": "npm run clean",
+		"test": "xo --fix && ava"
 	},
 	"files": [
-		"cli.js"
+		"dist"
 	],
 	"keywords": [
 		"cli",
 		"cli-app",
-		"unicorn",
-		"fun"
+		"add-config",
+		"add",
+		"config"
 	],
-	"dependencies": {
-		"meow": "^9.0.0",
-		"unicorn-fun": "^0.0.0"
-	},
+	"babel": {},
 	"devDependencies": {
+		"@babel/cli": "^7.14.3",
+		"@babel/core": "^7.14.3",
+		"@babel/preset-env": "^7.14.2",
 		"ava": "^3.15.0",
 		"execa": "^5.0.0",
-		"xo": "^0.37.0"
+		"mkdirp": "^1.0.4",
+		"rimraf": "^3.0.2",
+		"xo": "^0.40.1"
+	},
+	"dependencies": {
+		"meow": "^10.0.0"
 	}
 }
