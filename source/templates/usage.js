@@ -1,17 +1,5 @@
-# add-config
-
-## Install
-
-```
-$ npm install --global @barelyreaper/add-config
-```
-
-## Usage
-
-```
-$ add-config --help
-
-  Usage
+const usageMessage = `
+Usage
 	  $ add-config [options]
 
 	Options
@@ -20,4 +8,6 @@ $ add-config --help
 	Examples
 	  $ add-config -p . --type=react
 	  Created!
-```
+`;
+
+export default usageMessage;
