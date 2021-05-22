@@ -1,6 +1,6 @@
 {
 	"name": "@barelyreaper/add-config",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "add-config - create a standardised config storage",
 	"license": "MIT",
 	"repository": "barelyhuman/add-config",
