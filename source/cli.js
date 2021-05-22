@@ -5,6 +5,7 @@ import path from 'node:path';
 import meow from 'meow';
 import mkdirp from 'mkdirp';
 import reactConfigGenerator from './templates/react/config.js';
+import nodeConfigGenerator from './templates/node/config.js';
 import usageMessage from './templates/usage.js';
 
 function parseCli() {
@@ -28,6 +29,7 @@ function parseCli() {
 
 function validateFlags(cli) {
 	const acceptedFlags = new Set(['path', 'type']);
+	const acceptedTypes = ['react', 'node'];
 	const invalidFlags = [];
 	for (const flag of Object.keys(cli.flags)) {
 		if (!acceptedFlags.has(flag)) {
@@ -35,9 +37,19 @@ function validateFlags(cli) {
 		}
 	}
 
+	if (cli.flags && cli.flags.type && !acceptedTypes.includes(cli.flags.type)) {
+		console.log(
+			`Invalid Type: ${cli.flags.type}, Accepted types: ${acceptedTypes.join(
+				', '
+			)}`
+		);
+		return process.exit(1);
+	}
+
 	if (invalidFlags.length > 0) {
 		console.log('Invalid Option:', invalidFlags.join(','));
-		return cli.showHelp();
+		cli.showHelp();
+		return process.exit(1);
 	}
 }
 
@@ -53,7 +65,13 @@ async function runCommand(inputs, flags) {
 
 	switch (flags.type) {
 		case 'react': {
-			return createReactConfig(dirPath);
+			await createReactConfig(dirPath);
+			break;
+		}
+
+		case 'node': {
+			await createNodeConfig(dirPath);
+			break;
 		}
 
 		default: {
@@ -61,13 +79,22 @@ async function runCommand(inputs, flags) {
 			process.exit(1);
 		}
 	}
+
+	console.log('Created Config!');
 }
 
 async function createReactConfig(dirPath) {
 	const config = reactConfigGenerator();
 	const filePath = path.join(dirPath, 'config.js');
 	await fs.writeFile(filePath, String(config));
-	console.log('Created Config!');
+	return true;
+}
+
+async function createNodeConfig(dirPath) {
+	const config = nodeConfigGenerator();
+	const filePath = path.join(dirPath, 'config.js');
+	await fs.writeFile(filePath, String(config));
+	return true;
 }
 
 main();

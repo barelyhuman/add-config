@@ -12,12 +12,12 @@ $ npm install --global @barelyreaper/add-config
 $ add-config --help
 
   Usage
-	  $ add-config [options]
+    $ add-config [options]
 
-	Options
-	  -p, --path  path to consider as root
-    -t, --type  type of config, currently supports [react]
-	Examples
-	  $ add-config -p . --type=react
-	  Created!
+  Options
+    -p, --path  path to consider as root
+    -t, --type  type of config, currently supports [react|node]
+  Examples
+    $ add-config -p . --type=react
+    Created!
 ```
