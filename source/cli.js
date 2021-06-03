@@ -6,6 +6,7 @@ import meow from 'meow';
 import mkdirp from 'mkdirp';
 import reactConfigGenerator from './templates/react/config.js';
 import nodeConfigGenerator from './templates/node/config.js';
+import reactNativeConfigGenerator from './templates/react-native/config.js';
 import usageMessage from './templates/usage.js';
 
 function parseCli() {
@@ -74,6 +75,11 @@ async function runCommand(inputs, flags) {
 			break;
 		}
 
+		case 'react-native': {
+			await createReactNativeConfig(dirPath);
+			break;
+		}
+
 		default: {
 			console.error('Couldn\'t create config...');
 			process.exit(1);
@@ -96,5 +102,14 @@ async function createNodeConfig(dirPath) {
 	await fs.writeFile(filePath, String(config));
 	return true;
 }
+
+async function createReactNativeConfig(dirPath) {
+	const config = reactNativeConfigGenerator();
+	const filePath = path.join(dirPath, 'config.js');
+	await fs.writeFile(filePath, String(config));
+	return true;
+}
+
+
 
 main();
