@@ -1,14 +1,14 @@
 import test from 'ava';
 import execa from 'execa';
 
-test('Create React Config', async t => {
-	const {stdout} = await execa('./dist/cli.js', ['-p', 'temp']);
-	t.is(stdout, 'Created Config!');
-});
-
-test('Create Node Config', async t => {
-	const {stdout} = await execa('./dist/cli.js', ['-p', 'temp', '-t', 'node']);
-	t.is(stdout, 'Created Config!');
+test('Create Configs', async t => {
+	let execResponse;
+	execResponse = await execa('./dist/cli.js', ['-p', 'temp']);
+	t.is(execResponse.stdout, 'Created Config!');
+	execResponse = await execa('./dist/cli.js', ['-p', 'temp', '-t', 'node']);
+	t.is(execResponse.stdout, 'Created Config!');
+	execResponse = await execa('./dist/cli.js', ['-p', 'temp', '-t', 'react-native']);
+	t.is(execResponse.stdout, 'Created Config!');
 });
 
 test('Fail on invalid type', async t => {
@@ -17,7 +17,7 @@ test('Fail on invalid type', async t => {
 		t.fail();
 	} catch (error) {
 		const {stdout} = error;
-		t.is(stdout, 'Invalid Type: sad, Accepted types: react, node');
+		t.is(stdout, 'Invalid Type: sad, Accepted types: react, node, react-native');
 	}
 });
 

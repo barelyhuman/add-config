@@ -30,7 +30,7 @@ function parseCli() {
 
 function validateFlags(cli) {
 	const acceptedFlags = new Set(['path', 'type']);
-	const acceptedTypes = ['react', 'node'];
+	const acceptedTypes = ['react', 'node', 'react-native'];
 	const invalidFlags = [];
 	for (const flag of Object.keys(cli.flags)) {
 		if (!acceptedFlags.has(flag)) {
@@ -109,7 +109,5 @@ async function createReactNativeConfig(dirPath) {
 	await fs.writeFile(filePath, String(config));
 	return true;
 }
-
-
 
 main();
