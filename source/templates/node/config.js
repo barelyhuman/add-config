@@ -1,5 +1,5 @@
-export default function configGenerator(_) {
-	return `
+export default function configGenerator (_) {
+  return `
 const dev = {};
 
 const staging = {};
@@ -17,5 +17,5 @@ config = isProd && prod;
 config = isStaging && staging;
 config = isDev && dev;
 
-module.exports = config;`;
+module.exports = config;`
 }

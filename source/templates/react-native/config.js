@@ -1,7 +1,5 @@
-export default function configGenerator(_) {
-	return `
-
-  import VersionInfo from 'react-native-version-info'
+export default function configGenerator (_) {
+  return `import VersionInfo from 'react-native-version-info'
 
 const dev = {};
 
@@ -16,5 +14,5 @@ if(VersionInfo.bundleIdentifier && VersionInfo.bundleIdentifier.include('.dev'))
 }
 
 export default config
-  `;
+  `
 }
