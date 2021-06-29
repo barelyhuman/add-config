@@ -22,7 +22,7 @@
 		"build": "wrap",
 		"fix": "wrap --fix",
 		"prepare": "npm run build",
-		"clean": "rimraf config",
+		"clean": "rimraf temp",
 		"pretest": "npm run clean",
 		"test": "ava"
 	},
@@ -53,6 +53,7 @@
 		"standard": "^16.0.3"
 	},
 	"dependencies": {
+		"depdown": "^0.0.1",
 		"mkdirp": "^1.0.4",
 		"mri": "^1.1.6"
 	}
